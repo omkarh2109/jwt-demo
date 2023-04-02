@@ -1,0 +1,28 @@
+.form-signup {
+    max-width: 330px;
+    padding: 15px;
+}
+.myimg {
+    display: flex;
+    justify-content: center;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mylink{
+    margin: 0px;
+    padding: 0px;
+    color:blue;
+    text-decoration: none;
+}
+.horizental-line-text::before, .horizental-line-text::after{
+    content: "";
+    height: 2px;
+    background-color: #000;
+    display: block;
+}
+.horizental-line-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+ } 

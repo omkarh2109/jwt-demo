@@ -1,0 +1,81 @@
+<main class="form-signup w-100 m-auto">
+    <form [formGroup]="signupForm">
+        <div class="myimg">
+            <img class="mb-4 text-center" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt=""
+                width="72" height="57">
+        </div>
+        <h1 class="h3 mb-3 text-center fw-normal">Please sign up</h1>
+
+        <div class="col-md-12">
+            <label for="FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
+                [class.is-invalid]="signupForm.controls['FirstName'].invalid && (signupForm.controls['FirstName'].dirty || signupForm.controls['FirstName'].touched)">
+            <div *ngIf="signupForm.controls['FirstName'].invalid && (signupForm.controls['FirstName'].dirty || signupForm.controls['FirstName'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('required','FirstName')">
+                    First Name is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" formControlName="LastName" placeholder="Last Name"
+                [class.is-invalid]="signupForm.controls['LastName'].invalid && (signupForm.controls['LastName'].dirty || signupForm.controls['LastName'].touched)">
+            <div *ngIf="signupForm.controls['LastName'].invalid && (signupForm.controls['LastName'].dirty || signupForm.controls['LastName'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('required','LastName')">
+                    Last Name is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="Email" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="Email" placeholder="YourName@Example.com"
+                [class.is-invalid]="signupForm.controls['Email'].invalid && (signupForm.controls['Email'].dirty || signupForm.controls['Email'].touched)">
+            <div *ngIf="signupForm.controls['Email'].invalid && 
+            (signupForm.controls['Email'].dirty || signupForm.controls['Email'].touched)" class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('required','Email')">
+                    Email is required.
+                </div>
+            </div>
+            <div *ngIf="signupForm.controls['Email'].touched" class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('pattern','Email')">
+                    Email is invalid.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="Password" placeholder="Password"
+                [class.is-invalid]="signupForm.controls['Password'].invalid && (signupForm.controls['Password'].dirty || signupForm.controls['Password'].touched)">
+            <div *ngIf="signupForm.controls['Password'].invalid && (signupForm.controls['Password'].dirty || signupForm.controls['Password'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('required','Password')">
+                    Password is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" formControlName="ConfirmPassword" placeholder="Confirm Password"
+                [class.is-invalid]="signupForm.controls['ConfirmPassword'].invalid && (signupForm.controls['ConfirmPassword'].dirty || signupForm.controls['ConfirmPassword'].touched)">
+            <div *ngIf="signupForm.controls['ConfirmPassword'].invalid && (signupForm.controls['ConfirmPassword'].dirty || signupForm.controls['ConfirmPassword'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('required','ConfirmPassword')">
+                    Confirm Password is required.
+                </div>
+            </div>
+            <div *ngIf="signupForm.hasError('confirmPasswordValidator','ConfirmPassword')" class="invalid-feedback">
+                <div *ngIf="signupForm.hasError('confirmPasswordValidator','ConfirmPassword')">
+                    Passsword and Confirm Password didn't match.
+                </div>
+            </div>
+        </div>
+        <!-- [disabled]="!signupForm.valid" -->
+        <button class="w-100 mt-10 btn btn-lg btn-primary" type="button" (click)="signUp()">Sign Up</button>
+        <div class="horizental-line-text">
+            <h4 class="mt-10 text-center"><a class="mylink" href="/auth/login">Sign in</a></h4>
+        </div>
+        <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2023</p>
+    </form>
+</main>

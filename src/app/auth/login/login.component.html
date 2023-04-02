@@ -1,0 +1,50 @@
+<main class="form-signin w-100 m-auto">
+    <form [formGroup]="loginForm">
+        <div class="myimg">
+            <img class="mb-4 text-center" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt=""
+                width="72" height="57">
+        </div>
+        <h1 class="h3 mb-3 text-center fw-normal">Please sign in</h1>
+
+        <div class="col-md-12">
+            <label for="Email" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="Email" placeholder="YourName@Example.com"
+                [class.is-invalid]="loginForm.controls['Email'].invalid && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)">
+            <div *ngIf="loginForm.controls['Email'].invalid && 
+            (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)" class="invalid-feedback">
+                <div *ngIf="loginForm.hasError('required','Email')">
+                    Email is required.
+                </div>
+            </div>
+            <div *ngIf="loginForm.controls['Email'].touched" class="invalid-feedback">
+                <div *ngIf="loginForm.hasError('pattern','Email')">
+                    Email is invalid.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="Password" placeholder="Password"
+                [class.is-invalid]="loginForm.controls['Password'].invalid && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)">
+            <div *ngIf="loginForm.controls['Password'].invalid && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="loginForm.hasError('required','Password')">
+                    Password is required.
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div> -->
+        <button class="w-100 mt-3 btn btn-lg btn-primary" type="button" [disabled]="!loginForm.valid"
+            (click)="login()">Sign
+            in</button>
+        <div class="horizental-line-text">
+            <h4 class="mt-10 text-center"><a class="mylink" href="/auth/signup">Sign up</a></h4>
+        </div>
+        <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2023</p>
+    </form>
+</main>
