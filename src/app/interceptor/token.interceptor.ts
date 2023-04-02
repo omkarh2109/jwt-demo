@@ -42,8 +42,8 @@ export class TokenInterceptor implements HttpInterceptor {
     tokenApiModel.refreshToken = this._authService.getRefreshToken();
     return this._authService.renewToken(tokenApiModel).pipe(
       switchMap((data: TokenApiModel) => {
-        this._authService.setRefreshToken(data.refreshToken);
-        this._authService.setToken(data.accessToken);
+        this._authService.setRefreshToken(String(data.refreshToken));
+        this._authService.setToken(String(data.accessToken));
         req = req.clone({
           setHeaders: { Authorization: `Bearer ${data.accessToken}` }
         });

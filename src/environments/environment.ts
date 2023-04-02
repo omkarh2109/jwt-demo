@@ -7,8 +7,8 @@ import { IEnvironment } from "./environment-constant";
 export const environment: IEnvironment = {
   production: false,
   envName: 'dev_local',
-  apiUrl: 'http://localhost:5053/api/',
-  reportUrl: 'http://localhost:29029/api/reporting/',
+  apiUrl: 'http://localhost:5033/api/',
+  reportUrl: 'http://localhost:140293/api/reporting/',
   instagram_token: 'INSTA_TOKEN',
   stripe_token: 'STRIPE_TOKEN',
   paypal_token: 'PAYPAL_TOKEN',

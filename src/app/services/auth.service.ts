@@ -16,7 +16,6 @@ export class AuthService {
   private userPayload: any;
 
   constructor(private _httpClient: HttpClient) {
-    this.userPayload = this.decodedToken();
   }
 
   /**
@@ -66,8 +65,8 @@ export class AuthService {
   /**
    * 
    */
-  getToken(): string {
-    return JSON.parse(localStorage.getItem('token')!);
+  getToken(): String {
+    return String(localStorage.getItem('token'));
   }
 
   /**
@@ -75,14 +74,15 @@ export class AuthService {
    * @param tokenValue 
    */
   setRefreshToken(tokenValue: string) {
+    
     localStorage.setItem('refreshToken', tokenValue);
   }
 
   /**
    * 
    */
-  getRefreshToken(): string {
-    return JSON.parse(localStorage.getItem('refreshToken')!);
+  getRefreshToken(): String {
+    return String(localStorage.getItem('refreshToken'));
   }
 
 
@@ -99,9 +99,11 @@ export class AuthService {
   decodedToken() {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken();
-    const decodeToekn = jwtHelper.decodeToken(token);
-    console.log("decodeToekn", decodeToekn);
-    return decodeToekn;
+    console.log(" decodedToken token", token);
+    
+      const decodeToekn = jwtHelper.decodeToken(token?.toString());
+      console.log("decodeToekn 2", decodeToekn);
+      return decodeToekn;
   }
 
   /**

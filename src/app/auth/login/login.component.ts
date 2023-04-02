@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AppService } from 'src/app/services/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from "rxjs/operators";
-
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +21,8 @@ export class LoginComponent {
     private _authService: AuthService,
     private _appService: AppService,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private _toastrService: ToastrService) {
     this.InitLoginForm();
   }
 
@@ -46,12 +47,16 @@ export class LoginComponent {
           this._authService.setToken(resp.accessToken);
           this._authService.setRefreshToken(resp.refreshToken);
           const tokenPayload = this._authService.decodedToken();
+          console.log("tokenPayload 3",tokenPayload);
           this._appService.setFullNameForStore(tokenPayload.name);
           this._appService.setRoleForStore(tokenPayload.role);
           this._router.navigateByUrl("/dashboard/default");
         },
         error: (error: any) => {
           this.error = error;
+          console.log("error",error.error.message);
+          this._toastrService.error("Something went wrong!","Error");
+
         },
       });
   }

@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './services/app.service';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ToastrModule } from 'ngx-toastr'
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { TokenInterceptor } from './interceptor/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +30,13 @@ import { ToastrModule } from 'ngx-toastr'
       progressBar: true,
     })
   ],
-  providers: [AppService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
