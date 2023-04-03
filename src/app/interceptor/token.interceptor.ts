@@ -17,7 +17,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private _authService: AuthService, private _router: Router) { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("intercept");
     const myToken = this._authService.getToken();
     if (myToken) {
       request = request.clone({
@@ -37,16 +38,17 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   handleUnAuthError(req: HttpRequest<any>, next: HttpHandler) {
+    console.log("handleUnAuthError");
     let tokenApiModel = new TokenApiModel();
-    tokenApiModel.accessToken = this._authService.getToken();
-    tokenApiModel.refreshToken = this._authService.getRefreshToken();
+    tokenApiModel.accessToken = this._authService.getToken()!;
+    tokenApiModel.refreshToken = this._authService.getRefreshToken()!;
     return this._authService.renewToken(tokenApiModel).pipe(
       switchMap((data: TokenApiModel) => {
-        this._authService.setRefreshToken(String(data.refreshToken));
-        this._authService.setToken(String(data.accessToken));
+        this._authService.setRefreshToken(data.refreshToken!);
+        this._authService.setToken(data.accessToken!);
         req = req.clone({
           setHeaders: { Authorization: `Bearer ${data.accessToken}` }
-        });
+        })
         return next.handle(req);
       }),
       catchError((err) => {

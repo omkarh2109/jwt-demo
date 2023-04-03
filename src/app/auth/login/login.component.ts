@@ -43,11 +43,9 @@ export class LoginComponent {
       .pipe(first())
       .subscribe({
         next: (resp: any) => {
-          console.log(resp);
           this._authService.setToken(resp.accessToken);
           this._authService.setRefreshToken(resp.refreshToken);
           const tokenPayload = this._authService.decodedToken();
-          console.log("tokenPayload 3",tokenPayload);
           this._appService.setFullNameForStore(tokenPayload.name);
           this._appService.setRoleForStore(tokenPayload.role);
           this._router.navigateByUrl("/dashboard/default");

@@ -65,8 +65,8 @@ export class AuthService {
   /**
    * 
    */
-  getToken(): String {
-    return String(localStorage.getItem('token'));
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   /**
@@ -81,8 +81,8 @@ export class AuthService {
   /**
    * 
    */
-  getRefreshToken(): String {
-    return String(localStorage.getItem('refreshToken'));
+  getRefreshToken() {
+    return localStorage.getItem('refreshToken');
   }
 
 
@@ -98,12 +98,9 @@ export class AuthService {
    */
   decodedToken() {
     const jwtHelper = new JwtHelperService();
-    const token = this.getToken();
-    console.log(" decodedToken token", token);
-    
-      const decodeToekn = jwtHelper.decodeToken(token?.toString());
-      console.log("decodeToekn 2", decodeToekn);
-      return decodeToekn;
+    const token = this.getToken()!;
+    const decodeToekn = jwtHelper.decodeToken(token);
+    return decodeToekn;
   }
 
   /**
@@ -126,6 +123,10 @@ export class AuthService {
 
   renewToken(tokenApi: TokenApiModel) {
     return this._httpClient.post<any>(`${environment.apiUrl}auth/refresh`, tokenApi);
+  }
+
+  getAllUsers() {
+    return this._httpClient.get<any>(`${environment.apiUrl}auth/GetAllUsers`);
   }
 
 }
