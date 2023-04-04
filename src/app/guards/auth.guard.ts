@@ -25,8 +25,6 @@ export class AuthGuard implements CanActivate {
               state: RouterStateSnapshot): boolean {
       //check some condition
       const decodecToken = this._authService.decodedToken();
-      console.log("decodedToken in Auth Guards", decodecToken);
-      console.log("this._authService.isUserLoggedIn()",this._authService.isUserLoggedIn());
       if (this._authService.isUserLoggedIn())  {
         return true;
       } else {

@@ -12,7 +12,7 @@ export const environment: IEnvironment = {
   instagram_token: 'INSTA_TOKEN',
   stripe_token: 'STRIPE_TOKEN',
   paypal_token: 'PAYPAL_TOKEN',
-  redirectUrl: "/auth/login"
+  redirectUrl: "/login"
 };
 /*
  * For easier debugging in development mode, you can import the following file

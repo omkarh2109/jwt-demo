@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
   getAllUsers(){
     this._authService.getAllUsers().subscribe(resp=>{
       const data = resp;
-      console.log(data);
     });
   }
 

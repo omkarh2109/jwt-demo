@@ -18,7 +18,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private _authService: AuthService, private _router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("intercept");
     const myToken = this._authService.getToken();
     if (myToken) {
       request = request.clone({
@@ -28,8 +27,6 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // console.log("err:", err);
-          // this._router.navigate(['/auth/login']);
           return this.handleUnAuthError(request, next);
         }
       }
@@ -38,7 +35,6 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   handleUnAuthError(req: HttpRequest<any>, next: HttpHandler) {
-    console.log("handleUnAuthError");
     let tokenApiModel = new TokenApiModel();
     tokenApiModel.accessToken = this._authService.getToken()!;
     tokenApiModel.refreshToken = this._authService.getRefreshToken()!;
@@ -53,8 +49,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }),
       catchError((err) => {
         return throwError(() => {
-          console.log("err:", err);
-          this._router.navigate(['/auth/login']);
+          this._router.navigate(['/login']);
         })
       })
     )

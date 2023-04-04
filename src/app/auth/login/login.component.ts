@@ -34,7 +34,6 @@ export class LoginComponent {
   }
 
   login() {
-    // this._router.navigateByUrl("/dashboard");
     this.userObj = new AuthUser();
     this.userObj.Email = this.loginForm.controls["Email"].value;
     this.userObj.Password = this.loginForm.controls["Password"].value;
@@ -52,7 +51,6 @@ export class LoginComponent {
         },
         error: (error: any) => {
           this.error = error;
-          console.log("error",error.error.message);
           this._toastrService.error("Something went wrong!","Error");
 
         },

@@ -40,11 +40,6 @@ import { AuthGuard } from './guards/auth.guard';
       useClass: TokenInterceptor,
       multi: true
     },
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: ErrorInterceptor, 
-      multi: true 
-    },
     AppService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })

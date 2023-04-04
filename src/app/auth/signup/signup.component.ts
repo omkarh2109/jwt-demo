@@ -41,8 +41,6 @@ export class SignupComponent {
   }
 
   signUp() {
-    // this._toastrService.success('You reigstered Successfully!', 'Success!');
-    // this._router.navigateByUrl("/login");
     this.userObj = new AuthUser();
     this.userObj.FirstName = this.signupForm.controls["FirstName"].value;
     this.userObj.LastName = this.signupForm.controls["LastName"].value;
@@ -53,7 +51,6 @@ export class SignupComponent {
       .pipe(first())
       .subscribe({
         next: (resp: any) => {
-          console.log(resp);
           this._toastrService.success('Reigstered Successfully!', 'Success!');
           this._router.navigateByUrl("/login");
         },
