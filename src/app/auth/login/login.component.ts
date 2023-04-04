@@ -34,7 +34,7 @@ export class LoginComponent {
   }
 
   login() {
-    // this._router.navigateByUrl("/dashboard/default");
+    // this._router.navigateByUrl("/dashboard");
     this.userObj = new AuthUser();
     this.userObj.Email = this.loginForm.controls["Email"].value;
     this.userObj.Password = this.loginForm.controls["Password"].value;
@@ -48,7 +48,7 @@ export class LoginComponent {
           const tokenPayload = this._authService.decodedToken();
           this._appService.setFullNameForStore(tokenPayload.name);
           this._appService.setRoleForStore(tokenPayload.role);
-          this._router.navigateByUrl("/dashboard/default");
+          this._router.navigateByUrl("/dashboard");
         },
         error: (error: any) => {
           this.error = error;

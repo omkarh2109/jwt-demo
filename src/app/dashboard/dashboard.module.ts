@@ -5,7 +5,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     DashboardComponent
@@ -14,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     DashboardRoutingModule,
     HttpClientModule
-  ]
+  ],
+  providers:[]
 })
 export class DashboardModule { }

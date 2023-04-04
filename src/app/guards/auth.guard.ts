@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     if (this._authService.isUserLoggedIn())  {
       return true;
     } else {
-      this._router.navigate(['/auth/login']);
+      this._router.navigate(['/login']);
       return false;
     }
   }
@@ -23,11 +23,14 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean {
-      //check some condition  
+      //check some condition
+      const decodecToken = this._authService.decodedToken();
+      console.log("decodedToken in Auth Guards", decodecToken);
+      console.log("this._authService.isUserLoggedIn()",this._authService.isUserLoggedIn());
       if (this._authService.isUserLoggedIn())  {
         return true;
       } else {
-        this._router.navigate(['/auth/login']);
+        this._router.navigate(['/login']);
         return false;
       }
   }

@@ -42,7 +42,7 @@ export class SignupComponent {
 
   signUp() {
     // this._toastrService.success('You reigstered Successfully!', 'Success!');
-    // this._router.navigateByUrl("/auth/login");
+    // this._router.navigateByUrl("/login");
     this.userObj = new AuthUser();
     this.userObj.FirstName = this.signupForm.controls["FirstName"].value;
     this.userObj.LastName = this.signupForm.controls["LastName"].value;

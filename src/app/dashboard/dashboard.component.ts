@@ -12,12 +12,11 @@ export class DashboardComponent implements OnInit {
   /**
    *
    */
-  constructor(private _router: Router, private _authService: AuthService, private jwtHelper: JwtHelperService) {
+  constructor(private _router: Router, private _authService: AuthService) {
 
   }
 
   ngOnInit(){
-    this.checkTokenStauts();
     this.getAllUsers();
   }
 
@@ -28,18 +27,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  checkTokenStauts(){
-    const token = this._authService.getToken();
-    if (this.jwtHelper.isTokenExpired(token)) {
-      console.log("Token Expired");
-    } else {
-      console.log("Token Not Expired");
-    }
-  }
-
   logout() {
-    console.log('logout');
     this._authService.logout();
-    this._router.navigateByUrl("/auth/login");
+    this._router.navigateByUrl("/login");
   }
 }

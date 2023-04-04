@@ -12,6 +12,9 @@ import { ToastrModule } from 'ngx-toastr'
 import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ReactiveFormsModule,
     DashboardModule,
     HttpClientModule,
+    JwtModule,
     ToastrModule.forRoot({
       timeOut: 15000, // 15 seconds
       closeButton: true,
@@ -36,7 +40,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: TokenInterceptor,
       multi: true
     },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },AppService],
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: ErrorInterceptor, 
+      multi: true 
+    },
+    AppService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
