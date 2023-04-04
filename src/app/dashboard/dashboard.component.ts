@@ -9,9 +9,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  /**
-   *
-   */
+  listOfUsers:any;
   constructor(private _router: Router, private _authService: AuthService) {
 
   }
@@ -22,7 +20,7 @@ export class DashboardComponent implements OnInit {
 
   getAllUsers(){
     this._authService.getAllUsers().subscribe(resp=>{
-      const data = resp;
+      this.listOfUsers = resp;
     });
   }
 

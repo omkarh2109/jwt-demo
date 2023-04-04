@@ -74,7 +74,6 @@ export class AuthService {
    * @param tokenValue 
    */
   setRefreshToken(tokenValue: string) {
-    
     localStorage.setItem('refreshToken', tokenValue);
   }
 
